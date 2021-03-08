@@ -12,20 +12,25 @@ int main() {
 
   int total_passed_subjects = 0;
 
-  if(a > min_marks)
+  if(a > min_marks) {
     ++total_passed_subjects;
+  }
 
-  if(b > min_marks)
+  if(b > min_marks) {
     ++total_passed_subjects;
+  }
 
-  if(c > min_marks)
+  if(c > min_marks) {
     ++total_passed_subjects;
+  }
   
-  if(d > min_marks)
+  if(d > min_marks) {
     ++total_passed_subjects;
+  }
   
-  if(e > min_marks)
+  if(e > min_marks) {
     ++total_passed_subjects;
+  }
 
   if(total_passed_subjects >= min_passed_subjects) {
     printf("Passed\n");
