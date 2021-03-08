@@ -3,7 +3,7 @@
 
 int main() {
   int a, b, c, d, e;
-  const int min = 39, min_passed_subjects = 4;
+  int min = 39, min_passed_subjects = 4;
   int subject_count = 0;
 
   printf("Enter marks of 5 subjects: \n");

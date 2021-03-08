@@ -2,8 +2,8 @@
 #include <stdio.h>
 
 int main() {
-  const int min_marks = 39;
-  const int min_passed_subjects = 4;
+  int min_marks = 39;
+  int min_passed_subjects = 4;
 
   int a, b, c, d, e;
 
