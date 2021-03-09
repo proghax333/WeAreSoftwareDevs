@@ -1,7 +1,8 @@
 
 #include <stdio.h>
 
-int main() {
+int main()
+{
   int marks;
   
   printf("Enter marks: ");
@@ -9,17 +10,28 @@ int main() {
 
   printf("\nYour marks are: %d\n", marks);
 
-  if(marks >= 90) {
+  if(marks >= 90)
+  {
     printf("Grade is A+");
-  } else if(marks >= 80) {
+  }
+  else if(marks >= 80)
+  {
     printf("Grade is A");
-  } else if(marks >= 70) {
+  }
+  else if(marks >= 70)
+  {
     printf("Grade is B");
-  } else if(marks >= 60) {
+  }
+  else if(marks >= 60)
+  {
     printf("Grade is C");
-  } else if(marks >= 50) {
+  }
+  else if(marks >= 50)
+  {
     printf("Grade is D");
-  } else {
+  }
+  else
+  {
     printf("Grade is F");
   }
 
