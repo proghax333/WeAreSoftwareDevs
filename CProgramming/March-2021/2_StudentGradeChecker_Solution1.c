@@ -35,9 +35,5 @@ int main()
     printf("Grade is F");
   }
 
-  // Just print an empty new line.
-  // Not compulsory
-  printf("\n");
-
   return 0;
 }
