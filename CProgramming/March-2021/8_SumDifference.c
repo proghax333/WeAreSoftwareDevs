@@ -3,7 +3,7 @@
 #include <math.h>
 
 int main() {
-  int n = 10;
+  int n = 100;
 
   long long int sum_of_squares = n * (n + 1) * (2 * n + 1) / 6,
     square_of_sum = pow(n * (n + 1) / 2, 2),
