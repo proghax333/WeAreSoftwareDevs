@@ -6,7 +6,7 @@
 
 int get_line(char buffer[]) {
   fgets(buffer, MAX_SIZE, stdin);
-  
+
   int len = strlen(buffer);
   buffer[len - 1] = 0;
 
@@ -14,7 +14,7 @@ int get_line(char buffer[]) {
 }
 
 int main() {
-  char buffer[MAX_SIZE];
+  char buffer[MAX_SIZE + 1];
   int len;
   const unsigned int limit = 20;
 
