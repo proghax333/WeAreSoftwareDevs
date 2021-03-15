@@ -1,2 +1,4 @@
 **/build
 **/*.swp
+push.sh
+run.sh
