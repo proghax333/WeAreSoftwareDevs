@@ -11,6 +11,9 @@ int main()
   printf("Enter b: ");
   scanf("%d", &b);
 
+  /**
+   * Property: a + b = a -(-b)
+   */
   int result = a - (-b);
 
   printf("%d + %d = %d\n", a, b, result);
