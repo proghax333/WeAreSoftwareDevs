@@ -25,6 +25,8 @@ big_number_t big_number_default()
 
   number.is_negative = false;
 
+  number.length = 1;
+
   return number;
 }
 
@@ -65,8 +67,12 @@ big_number_t big_number_read()
     ++counter;
   }
 
-  number.number_buffer[counter] = '\0';
-  number.length = counter;
+  if(counter != 0) {
+    number.number_buffer[counter] = '\0';
+    number.length = counter;
+  } else {
+    number.is_negative = false;
+  }
 
   return number;
 }
