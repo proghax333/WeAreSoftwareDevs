@@ -16,7 +16,8 @@ struct big_number
 
 typedef struct big_number big_number_t;
 
-big_number_t big_number_default() {
+big_number_t big_number_default()
+{
   big_number_t number;
 
   number.number_buffer[0] = '0';
@@ -51,7 +52,9 @@ big_number_t big_number_read()
   else if (ch == '-')
   {
     number.is_negative = true;
-  } else {
+  }
+  else
+  {
     return number;
   }
 
@@ -68,18 +71,18 @@ big_number_t big_number_read()
   return number;
 }
 
-char* big_number_stringify(big_number_t number)
+char *big_number_stringify(big_number_t number)
 {
-  char* str = (char*) calloc(BIG_NUMBER_LIMIT + 2, sizeof(char));
+  char *str = (char *)calloc(BIG_NUMBER_LIMIT + 2, sizeof(char));
   int index = 0;
 
-  if(number.is_negative == true)
+  if (number.is_negative == true)
   {
     str[index] = '-';
     ++index;
   }
   int i = 0;
-  while(number.number_buffer[i] != '\0')
+  while (number.number_buffer[i] != '\0')
   {
     str[index] = number.number_buffer[i];
     ++i;
@@ -104,10 +107,11 @@ big_number_t big_number_add(big_number_t a, big_number_t b)
   int rem = 0, t;
   size_t count = 0;
 
-  char* num1 = a.number_buffer, *num2 = b.number_buffer;
-  char* buf = result.number_buffer;
+  char *num1 = a.number_buffer, *num2 = b.number_buffer;
+  char *buf = result.number_buffer;
 
-  while(i > -1 && j > -1) {
+  while (i > -1 && j > -1)
+  {
     t = (num1[i] - '0') + (num2[j] - '0') + rem;
     rem = t / 10;
     t = t % 10;
@@ -118,7 +122,8 @@ big_number_t big_number_add(big_number_t a, big_number_t b)
     ++count;
   }
 
-  while(i > -1) {
+  while (i > -1)
+  {
     t = (num1[i] - '0') + rem;
     rem = t / 10;
     t = t % 10;
@@ -127,7 +132,8 @@ big_number_t big_number_add(big_number_t a, big_number_t b)
     --i, ++count;
   }
 
-  while(j > -1) {
+  while (j > -1)
+  {
     t = (num2[j] - '0') + rem;
     rem = t / 10;
     t = t % 10;
@@ -136,7 +142,8 @@ big_number_t big_number_add(big_number_t a, big_number_t b)
     --j, ++count;
   }
 
-  if(rem) {
+  if (rem)
+  {
     buf[count] = rem + '0';
     ++count;
   }
@@ -144,7 +151,7 @@ big_number_t big_number_add(big_number_t a, big_number_t b)
   buf[count] = '\0';
 
   char temp;
-  for(int i = 0; i < count / 2; ++i)
+  for (int i = 0; i < count / 2; ++i)
   {
     temp = buf[i];
     buf[i] = buf[count - i - 1];
@@ -169,9 +176,9 @@ int main()
 
   big_number_t result = big_number_add(a, b);
 
-  char* a_string = big_number_stringify(a);
-  char* b_string = big_number_stringify(b);
-  char* result_string = big_number_stringify(result);
+  char *a_string = big_number_stringify(a);
+  char *b_string = big_number_stringify(b);
+  char *result_string = big_number_stringify(result);
 
   printf("%s + %s = %s\n", a_string, b_string, result_string);
 
