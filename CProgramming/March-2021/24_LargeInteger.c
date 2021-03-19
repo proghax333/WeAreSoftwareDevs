@@ -209,7 +209,7 @@ big_number_t big_number_subtract(big_number_t a, big_number_t b)
 {
   big_number_t result = big_number_default();
 
-  
+    
 
   return result;
 }
