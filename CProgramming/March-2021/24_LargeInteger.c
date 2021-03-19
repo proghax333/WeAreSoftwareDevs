@@ -7,14 +7,27 @@
 
 #define BIG_NUMBER_LIMIT 100
 
+/* Type declaration */
+struct big_number;
+typedef struct big_number big_number_t;
+
+/* Operations */
+big_number_t big_number_default();
+big_number_t big_number_read();
+big_number_t big_number_add(big_number_t a, big_number_t b);
+big_number_t big_number_subtract(big_number_t a, big_number_t b);
+
+/* Utility Functions */
+size_t big_number_length(big_number_t number);
+char *big_number_stringify(big_number_t number);
+
+/* Type Definitions */
 struct big_number
 {
   char number_buffer[BIG_NUMBER_LIMIT + 1];
   bool is_negative;
   size_t length;
 };
-
-typedef struct big_number big_number_t;
 
 big_number_t big_number_default()
 {
@@ -67,10 +80,13 @@ big_number_t big_number_read()
     ++counter;
   }
 
-  if(counter != 0) {
+  if (counter != 0)
+  {
     number.number_buffer[counter] = '\0';
     number.length = counter;
-  } else {
+  }
+  else
+  {
     number.is_negative = false;
   }
 
@@ -99,6 +115,11 @@ char *big_number_stringify(big_number_t number)
   return str;
 }
 
+inline static int convert_digit(char ch)
+{
+  return ch - '0';
+}
+
 /**
  * @info: Unoptimized implementation of adder function.
  * @status: Currently only supports positive numbers. 
@@ -110,9 +131,18 @@ big_number_t big_number_add(big_number_t a, big_number_t b)
 
   int i = a.length - 1;
   int j = b.length - 1;
+
+  if(a.is_negative) {
+    a.is_negative = false;
+    return big_number_subtract(b, a);
+  }
+  if(b.is_negative) {
+    b.is_negative = false;
+    return big_number_subtract(a, b);
+  }
+
   int rem = 0, t;
   size_t count = 0;
-
   char *num1 = a.number_buffer, *num2 = b.number_buffer;
   char *buf = result.number_buffer;
 
@@ -164,13 +194,25 @@ big_number_t big_number_add(big_number_t a, big_number_t b)
     buf[count - i - 1] = temp;
   }
 
+  if (a.is_negative && b.is_negative)
+  {
+    result.is_negative = true;
+  }
+
   return result;
 }
 
 /**
  * @todo: Implement the subtractor function for big numbers.
  */
-big_number_t big_number_subtract(big_number_t a, big_number_t b);
+big_number_t big_number_subtract(big_number_t a, big_number_t b)
+{
+  big_number_t result = big_number_default();
+
+  
+
+  return result;
+}
 
 int main()
 {
@@ -180,13 +222,13 @@ int main()
   printf("Enter b = ");
   big_number_t b = big_number_read();
 
-  big_number_t result = big_number_add(a, b);
+  big_number_t result = big_number_subtract(a, b);
 
   char *a_string = big_number_stringify(a);
   char *b_string = big_number_stringify(b);
   char *result_string = big_number_stringify(result);
 
-  printf("%s + %s = %s\n", a_string, b_string, result_string);
+  printf("%s - %s = %s\n", a_string, b_string, result_string);
 
   free(a_string);
   free(b_string);
