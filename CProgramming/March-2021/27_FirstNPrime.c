@@ -1,4 +1,6 @@
 
+// Daily Problem #3 : 20/03/2021
+
 #include <stdio.h>
 #include <math.h>
 
@@ -28,17 +30,17 @@ int isPrime(int n) {
 int main()
 {
   int n = 10;
-  int count = n;
+  int count = 0;
 
   int sum = 2; // because first prime is 2 (only even prime number)
-  --count;
+  ++count;
   
-  for(int i = 3; count > 0; i += 2)
+  for(int i = 3; count < n; i += 2)
   {
     if(isPrime(i))
     {
       sum += i;
-      --count;
+      ++count;
     }
   }
 
