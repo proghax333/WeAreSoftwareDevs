@@ -1,5 +1,6 @@
 
 // Daily Problem #3 : 20/03/2021
+// Sum of first n prime numbers
 
 #include <stdio.h>
 #include <math.h>
