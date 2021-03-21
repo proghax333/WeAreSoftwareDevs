@@ -105,7 +105,7 @@ int main()
       case 4: case -4:
       {
         // Full Circle
-        double x, y, r;
+        double r;
 
         printf("Enter radius: ");
         scanf("%lf", &r);
@@ -119,7 +119,7 @@ int main()
       case 5: case -5:
       {
         // Half Circle
-        double x, y, r;
+        double r;
 
         printf("Enter radius: ");
         scanf("%lf", &r);
@@ -138,7 +138,7 @@ int main()
       case 6: case -6:
       {
         // Quarter Circle
-        double x, y, r;
+        double r;
 
         printf("Enter radius: ");
         scanf("%lf", &r);
