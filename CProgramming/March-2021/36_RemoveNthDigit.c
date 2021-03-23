@@ -23,6 +23,7 @@ int main()
   if(n <= number_of_digits && n > 0)
   {
     long long int counter = 1, u = 0, digit_to_be_removed, factor = 1;
+    
     while(counter != n)
     {
       u = (t % 10) * factor + u;
@@ -34,6 +35,7 @@ int main()
     t /= 10;
     t = t * pow(10, n - 1) + u;
     
+    // Restore the original sign
     if(number < 0)
       t = -t;
     
