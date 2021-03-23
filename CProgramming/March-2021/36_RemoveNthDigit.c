@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <math.h>
 
-/*inline static*/long long int absolute_value(long long int x)
-{
-  return -x * (x < 0) + x * (x >= 0);
-}
+/**
+ * Function Declaration
+ */
+long long int absolute_value(long long int x);
 
 int main()
 {
@@ -57,4 +57,9 @@ int main()
   }
 
   return 0;
+}
+
+long long int absolute_value(long long int x)
+{
+  return -x * (x < 0) + x * (x >= 0);
 }
