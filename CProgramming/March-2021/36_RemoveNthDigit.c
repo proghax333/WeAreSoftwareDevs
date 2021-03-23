@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-inline static long long int absolute_value(long long int x)
+/*inline static*/long long int absolute_value(long long int x)
 {
   return -x * (x < 0) + x * (x >= 0);
 }
@@ -10,7 +10,7 @@ inline static long long int absolute_value(long long int x)
 int main()
 {
   long long int number, n;
-  
+
   printf("Enter a number: ");
   scanf("%ld", &number);
 
