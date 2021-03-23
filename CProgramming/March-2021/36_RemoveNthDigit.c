@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-long long int absolute_value(long long int x)
+inline static long long int absolute_value(long long int x)
 {
   return -x * (x < 0) + x * (x >= 0);
 }
@@ -10,7 +10,7 @@ long long int absolute_value(long long int x)
 int main()
 {
   long long int number, n;
-
+  
   printf("Enter a number: ");
   scanf("%ld", &number);
 
@@ -23,7 +23,7 @@ int main()
   if(n <= number_of_digits && n > 0)
   {
     long long int counter = 1, u = 0, digit_to_be_removed, factor = 1;
-    
+
     while(counter != n)
     {
       u = (t % 10) * factor + u;
