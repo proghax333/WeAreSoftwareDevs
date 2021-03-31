@@ -3,4 +3,4 @@
 push.sh
 run.sh
 clean.sh
-.vscode/**
+**/.vscode
