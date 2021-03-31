@@ -9,6 +9,7 @@
 #include <functional>
 #include <unordered_map>
 
+#include "Typedefs.hpp"
 #include "MathLib.hpp"
 
 #include "include/Square.hpp"
@@ -33,15 +34,13 @@ public:
   Application()
   {
     shapeList = {
-        {1, {"Square", Square::ShapeType}} /*,
+        {1, {"Square", Square::ShapeType}},
         {2, {"Rectangle", Rectangle::ShapeType}},
         {3, {"Right Triangle", RightTriangle::ShapeType}},
         {4, {"Circle", Circle::ShapeType}},
         {5, {"Half Circle", HalfCircle::ShapeType}},
-        {6, {"Quarter Circle", QuarterCircle::ShapeType}}};*/
-    };
-  }
-
+        {6, {"Quarter Circle", QuarterCircle::ShapeType}}};
+  };
   int showMenu()
   {
 
