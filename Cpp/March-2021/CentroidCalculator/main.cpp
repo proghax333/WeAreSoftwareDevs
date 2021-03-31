@@ -41,25 +41,6 @@ public:
         {5, {"Half Circle", HalfCircle::ShapeType}},
         {6, {"Quarter Circle", QuarterCircle::ShapeType}}};
   };
-  int showMenu()
-  {
-
-    return 0;
-  }
-  int inputChoice()
-  {
-    int choice;
-    std::cin >> choice;
-
-    return choice;
-  }
-  Number getNumberInput()
-  {
-    Number input;
-    std::cin >> input;
-
-    return input;
-  }
 
   int start()
   {
@@ -78,42 +59,6 @@ public:
     Utils::apply(
         Utils::objectDeleter,
         square, rectangle, rightTriangle, circle, halfCircle, quarterCircle);
-
-    /*
-    bool windowOn = true, batchOn = true;
-    size_t numberOfShapes = shapeList.size();
-
-    while (windowOn)
-    {
-      batchOn = true;
-
-      while (batchOn)
-      {
-        showMenu();
-        int choice = inputChoice();
-
-        if (choice >= 1 && choice <= numberOfShapes)
-        {
-          // Process the shape
-        }
-        else if (choice == numberOfShapes + 1)
-        {
-          // Finish current batch of shapes
-          batchOn = false;
-        }
-        else if (choice == numberOfShapes + 2)
-        {
-          // Finish
-          batchOn = false;
-          windowOn = false;
-        }
-        else
-        {
-          // Invalid Choice
-        }
-      }
-      
-    }*/
 
     return 0;
   }
