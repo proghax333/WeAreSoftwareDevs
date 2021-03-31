@@ -4,35 +4,40 @@
 #include <string>
 
 #include "Typedefs.hpp"
-#include "MathLib.hpp"
-
 #include "include/Shape.hpp"
-#include "include/Body.hpp"
-#include "interfaces/AreaInterface.hpp"
-#include "interfaces/AngleInterface.hpp"
+#include "properties/Body2DProperties.hpp"
+#include "properties/AngleProperties.hpp"
+#include "properties/CircleProperties.hpp"
 
-class HalfCircle : public virtual Shape, public virtual AreaInterface, public virtual Body<2>, public virtual AngleInterface<1>
+class HalfCircle : public virtual Shape, public virtual Body2DProperties, public virtual AngleProperties, public virtual CircleProperties
 {
 public:
-  HalfCircle(const Number &radius = 0.0) : radius(radius)
+  static const std::string ShapeType;
+  HalfCircle(const Number &radius = 0.0)
   {
-    this->setShapeType("half-circle");
-  }
-  Number getArea() override
-  {
-    return (Math::PI * this->radius * this->radius) / 2;
-  }
-  Vector<2> getCentroid() override
-  {
-    auto location = this->getLocation();
-    auto result = Vector<2>(
-        {location[0], location[1] + (4 * this->radius / (3 * Math::PI))});
+    setShapeType(ShapeType);
 
-    result = Math::rotate2(result, this->angles[0]);
+    // getArea() behavior
+    std::function<Number()> getArea = [&]() -> Number {
+      auto radius = properties["radius"].get<Number &>();
+      return (Math::PI * radius * radius) / 2;
+    };
 
-    return result;
+    // getCentroid() behavior
+    std::function<Vector<2>()> getCentroid = [&]() -> Vector<2> {
+      auto x = properties["x"].get<Number &>();
+      auto y = properties["y"].get<Number &>();
+      auto radius = properties["radius"].get<Number &>();
+      auto result = Vector<2>({x, y + (4 * radius / (3 * Math::PI))});
+
+      return result;
+    };
+
+    // Add behavioural details to the shape
+    properties["getArea"] = Property{.type = "shapeBehavior", .value = getArea};
+
+    properties["getCentroid"] = Property{.type = "shapeBehavior", .value = getCentroid};
   }
-
-private:
-  Number radius = 0.0;
 };
+
+const std::string HalfCircle::ShapeType = "HalfCircle";

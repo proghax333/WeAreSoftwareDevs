@@ -7,28 +7,37 @@
 #include "include/Shape.hpp"
 #include "properties/Body2DProperties.hpp"
 #include "properties/AngleProperties.hpp"
-#include "properties/CircleProperties.hpp"
 
-class QuarterCircle : public virtual Shape, public virtual Body2DProperties, public virtual AngleProperties, public virtual CircleProperties
+class Rectangle : public virtual Shape, public virtual Body2DProperties, public virtual AngleProperties
 {
 public:
   static const std::string ShapeType;
-  QuarterCircle(const Number &radius = 0.0)
+  Rectangle(const Number &width = 0.0, const Number &height = 0.0)
   {
     setShapeType(ShapeType);
 
+    // Add width property to the shape
+    properties["width"] = Property{.type = "shapeProperty", .value = width};
+
+    // Add height property to the shape
+    properties["height"] = Property{.type = "shapeProperty", .value = height};
+
     // getArea() behavior
     std::function<Number()> getArea = [&]() -> Number {
-      auto radius = properties["radius"].get<Number &>();
-      return (Math::PI * radius * radius) / 4;
+      auto width = properties["width"].get<Number &>();
+      auto height = properties["height"].get<Number &>();
+
+      return width * height;
     };
 
     // getCentroid() behavior
     std::function<Vector<2>()> getCentroid = [&]() -> Vector<2> {
       auto x = properties["x"].get<Number &>();
       auto y = properties["y"].get<Number &>();
-      auto radius = properties["radius"].get<Number &>();
-      auto result = Vector<2>({x + (4 * radius / (3 * Math::PI)), y + (4 * radius / (3 * Math::PI))});
+      auto width = properties["width"].get<Number &>();
+      auto height = properties["height"].get<Number &>();
+
+      auto result = Vector<2>({x + width / 2, y + height / 2});
 
       return result;
     };
@@ -40,4 +49,4 @@ public:
   }
 };
 
-const std::string QuarterCircle::ShapeType = "QuarterCircle";
+const std::string Rectangle::ShapeType = "Rectangle";
