@@ -18,6 +18,10 @@
 #include "include/HalfCircle.hpp"
 #include "include/QuarterCircle.hpp"
 
+#include "utilities/Apply.hpp"
+#include "utilities/StdioUtils.hpp"
+#include "utilities/MemoryUtils.hpp"
+
 using namespace Math;
 
 using ShapeManager2D = std::vector<std::shared_ptr<Shape>>;
@@ -57,48 +61,24 @@ public:
 
     return input;
   }
-  template <class T>
-  void displayAllProperties(const T &shape)
-  {
-    auto props = shape->getAllProperties();
-
-    std::cout << "[Shape Properties]\n"
-                 "  Shape Name = "
-              << shape->getShapeType() << std::endl;
-
-    for (auto [propertyName, property] : props)
-    {
-      if (property.type == "shapeProperty")
-      {
-        std::cout << " - " << propertyName << std::endl;
-      }
-    }
-
-    std::cout << "\n\n";
-  }
 
   int start()
   {
-    Shape *square = new Square();
-    Shape *rectangle = new Rectangle();
-    Shape *rightTriangle = new RightTriangle();
-    Shape *circle = new Circle();
-    Shape *halfCircle = new HalfCircle();
-    Shape *quarterCircle = new QuarterCircle();
+    Shape
+        *square = new Square(),
+        *rectangle = new Rectangle(),
+        *rightTriangle = new RightTriangle(),
+        *circle = new Circle(),
+        *halfCircle = new HalfCircle(),
+        *quarterCircle = new QuarterCircle();
 
-    displayAllProperties(square);
-    displayAllProperties(rectangle);
-    displayAllProperties(rightTriangle);
-    displayAllProperties(circle);
-    displayAllProperties(halfCircle);
-    displayAllProperties(quarterCircle);
+    Utils::apply(
+        Utils::shapePropertyDisplayer,
+        square, rectangle, rightTriangle, circle, halfCircle, quarterCircle);
 
-    delete square;
-    delete rectangle;
-    delete rightTriangle;
-    delete circle;
-    delete halfCircle;
-    delete quarterCircle;
+    Utils::apply(
+        Utils::objectDeleter,
+        square, rectangle, rightTriangle, circle, halfCircle, quarterCircle);
 
     /*
     bool windowOn = true, batchOn = true;
