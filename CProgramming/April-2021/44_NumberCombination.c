@@ -1,4 +1,6 @@
 
+/* Write a program to print all the combinations of digits of a number. */
+
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
