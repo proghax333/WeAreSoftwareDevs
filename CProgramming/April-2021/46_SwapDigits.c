@@ -10,9 +10,6 @@
 /* Returns nth digit of a number */
 long int nth(long int number, int n);
 
-/* Returns how many digits are there in a number */
-long int count_digits(long int number);
-
 /* Sets the nth digit of a number */
 long int set_nth_digit(long int number, int n, int digit);
 
@@ -41,12 +38,6 @@ int main()
 long int nth(long int number, int n)
 {
   return (number / (long int)powl(10, n)) % 10;
-}
-
-/* Returns how many digits are there in a number */
-long int count_digits(long int number)
-{
-  return log10(number) + 1;
 }
 
 /* Sets the nth digit of a number */
