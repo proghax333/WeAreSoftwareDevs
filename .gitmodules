@@ -1,3 +1,6 @@
 [submodule "Cpp/April-2021/MathParse"]
 	path = Cpp/April-2021/MathParse
 	url = https://github.com/proghax333/MathParse
+[submodule "CProgramming/April-2021/Projects/MathParseC"]
+	path = CProgramming/April-2021/Projects/MathParseC
+	url = https://github.com/proghax333/MathParseC
