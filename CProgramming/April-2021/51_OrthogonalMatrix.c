@@ -39,8 +39,8 @@
   sum += 3 * 3;
 
   | 1 2 3 |   | 1 4 7 10 20 |   | 14 32 . . . |
-  | 4 5 6 | x | 2 5 8 30 40 | = | .  .  . |
-  | 7 8 9 |   | 3 6 9 50 60 |   | .  .  . |
+  | 4 5 6 | x | 2 5 8 30 40 | = | .  .  . . . |
+  | 7 8 9 |   | 3 6 9 50 60 |   | .  .  . . . |
 
   Condition is n == p.
   The new matrix formed will be m x q.
@@ -86,13 +86,17 @@ int multiply_matrices(int m, int n, int A[m][n], int p, int q, int B[p][q], int 
 // This function will return 1 if the matrix is orthogonal, and it will return 0 if the matrix is not orthogonal
 int is_orthogonal_matrix(int m, int n, int matrix[m][n])
 {
-  // ortho = A * A ^ T
+  // ortho when A * A ^ T = I
 
   int transpose_matrix[n][m];
   transpose(m, n, matrix, transpose_matrix);
 
   int resultant_matrix[m][m];
-  multiply_matrices(m, n, matrix, n, m, transpose_matrix, resultant_matrix);
+  
+  if(!multiply_matrices(m, n, matrix, n, m, transpose_matrix, resultant_matrix))
+  {
+    return 0;
+  }
 
   for (int i = 0; i < m; ++i)
   {
