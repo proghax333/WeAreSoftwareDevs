@@ -30,11 +30,20 @@ int lpop()
   return count;
 }
 
+char* get_current_conversion()
+{
+  int len = strlen(buffer);
+  if(buffer[len - 1] == ' ')
+  {
+    buffer[len - 1] = 0;
+  }
+  return buffer;
+}
+
 /* A function that prints given number in words */
 void convert_to_words(char* num)
 {
-    int len = strlen(
-        num); // Get number of digits in given number
+    int len = strlen(num); // Get number of digits in given number
     char* numstr = num;
  
     /* Base cases */
@@ -153,10 +162,11 @@ int main(int argc, char const *argv[])
     {
       sprintf(arr, "%d", i);
       convert_to_words(arr);
+      printf("%d = %s\n", i, get_current_conversion());
       sum += lpop();
     }
 
-    printf("%d\n", sum);
+    printf("Sum = %d\n", sum);
 
     return 0;
 }
