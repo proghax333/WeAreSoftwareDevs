@@ -31,7 +31,7 @@ int lpop()
 }
 
 /* A function that prints given number in words */
-void convert_to_words(char* num, char* output)
+void convert_to_words(char* num)
 {
     int len = strlen(
         num); // Get number of digits in given number
@@ -146,13 +146,13 @@ void convert_to_words(char* num, char* output)
 
 int main(int argc, char const *argv[])
 {
-    char arr[MAXARRAY], result[MAXARRAY];
+    char arr[MAXARRAY];
     int sum=0, len;
 
     for (int i = 1; i <= MAXNUM; i++)
     {
       sprintf(arr, "%d", i);
-      convert_to_words(arr, result);
+      convert_to_words(arr);
       sum += lpop();
     }
 
