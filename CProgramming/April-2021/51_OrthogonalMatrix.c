@@ -1,54 +1,8 @@
 
-/*
-  Today's problem:
-    You are given a matrix A of order n x n.
-    Write a program to determine whether the matrix A is orthogonal or not.
-
-  * Orthogonal Matrix:
-  Definition - A matrix 'A' is said to be orthogonal when A x A^T = I.
-  
-  * A^T = Transpose
-  Rows and columns are interchanged
-  A =
-  | 1 2 3 |
-  | 4 5 6 |
-  | 7 8 9 |
-
-  A ^ T =
-  Transpose =
-  | 1 4 7 |
-  | 2 5 8 |
-  | 3 6 9 |
-
-  1 * 1 + 2 * 2 + 3 * 3 = 1 + 4 + 9 = 14
-  1 * 4 + 2 * 5 + 3 * 6 = 4 + 10 + 18 = 32
-
-  Multiplication of Matrices:
-  Condition = Number of columns of A must be equal to the number of rows of B
-
-  A is a matrix of order m x n
-  B is a matrix of order p x q
-
-  1 * 1 + 2 * 2 + 3 * 3 = 1 + 4 + 9 = 14
-  1 * 4 + 2 * 5 + 3 * 6 = 4 + 10 + 18 = 32
-
-  sum = 0;
-
-  sum += 1 * 1;
-  sum += 2 * 2;
-  sum += 3 * 3;
-
-  | 1 2 3 |   | 1 4 7 10 20 |   | 14 32 . . . |
-  | 4 5 6 | x | 2 5 8 30 40 | = | .  .  . . . |
-  | 7 8 9 |   | 3 6 9 50 60 |   | .  .  . . . |
-
-  Condition is n == p.
-  The new matrix formed will be m x q.
-*/
-
 #include <stdio.h>
 
-void transpose(int m, int n, int matrix[m][n], int result[n][m])
+// Calculates the transpose of mxn matrix
+void transpose(int m, int n, double matrix[m][n], double result[n][m])
 {
   for (int i = 0; i < m; ++i)
   {
@@ -59,7 +13,8 @@ void transpose(int m, int n, int matrix[m][n], int result[n][m])
   }
 }
 
-int multiply_matrices(int m, int n, int A[m][n], int p, int q, int B[p][q], int result[m][q])
+// Calculates the product of two matrices
+int multiply_matrices(int m, int n, double A[m][n], int p, int q, double B[p][q], double result[m][q])
 {
   if (n != p)
   {
@@ -70,7 +25,7 @@ int multiply_matrices(int m, int n, int A[m][n], int p, int q, int B[p][q], int 
   {
     for (int j = 0; j < q; ++j)
     {
-      int sum = 0;
+      double sum = 0;
       for (int k = 0; k < n; ++k)
       {
         sum += A[i][k] * B[k][j];
@@ -84,16 +39,16 @@ int multiply_matrices(int m, int n, int A[m][n], int p, int q, int B[p][q], int 
 }
 
 // This function will return 1 if the matrix is orthogonal, and it will return 0 if the matrix is not orthogonal
-int is_orthogonal_matrix(int m, int n, int matrix[m][n])
+int is_orthogonal_matrix(int m, int n, double matrix[m][n])
 {
   // ortho when A * A ^ T = I
 
-  int transpose_matrix[n][m];
+  double transpose_matrix[n][m];
   transpose(m, n, matrix, transpose_matrix);
 
-  int resultant_matrix[m][m];
-  
-  if(!multiply_matrices(m, n, matrix, n, m, transpose_matrix, resultant_matrix))
+  double resultant_matrix[m][m];
+
+  if (!multiply_matrices(m, n, matrix, n, m, transpose_matrix, resultant_matrix))
   {
     return 0;
   }
@@ -118,19 +73,35 @@ int is_orthogonal_matrix(int m, int n, int matrix[m][n])
 
 int main()
 {
-  int matrix[2][2] = {
-    { -1, 0},
-    { 0, 1 }
-  };
-  int m = 2, n = 2;
+  int m, n;
 
-  if (is_orthogonal_matrix(m, n, matrix))
+  printf("Enter the number of rows of matrix A: ");
+  scanf("%d", &m);
+
+  printf("Enter the number of columns of matrix A: ");
+  scanf("%d", &n);
+
+  double A[m][n];
+
+  printf("Enter matrix A: ");
+  for (int i = 0; i < m; ++i)
   {
-    printf("The given matrix is orthogonal!\n");
+    for (int j = 0; j < n; ++j)
+    {
+      printf("A[%d][%d] = ", i + 1, j + 1);
+      scanf("%lf", &A[i][j]);
+    }
+  }
+
+  printf("\n");
+  if (is_orthogonal_matrix(m, n, A))
+  {
+    printf("The matrix is orthogonal.\n");
   }
   else
   {
-    printf("The given matrix is not orthogonal!\n");
+    printf("The Matrix is not orthogonal.\n");
   }
+
   return 0;
 }
